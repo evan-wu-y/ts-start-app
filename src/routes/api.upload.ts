@@ -3,15 +3,7 @@ import { json } from '@tanstack/react-start'
 import fs from 'node:fs'
 import path from 'node:path'
 import { formatFileSize } from '@/lib/file-utils'
-import { FILES_DIR } from '@/lib/file-server'
-
-async function ensureFilesDir() {
-  try {
-    await fs.promises.access(FILES_DIR)
-  } catch {
-    await fs.promises.mkdir(FILES_DIR, { recursive: true })
-  }
-}
+import { FILES_DIR, ensureFilesDir } from '@/lib/file-server-utils'
 
 export const Route = createFileRoute('/api/upload')({
   server: {

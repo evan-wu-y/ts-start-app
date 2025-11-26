@@ -1,18 +1,9 @@
-import { createServerFn } from '@tanstack/react-start'
 import fs from 'node:fs'
 import path from 'node:path'
-import { formatFileSize } from './file-utils'
+import { createServerFn } from '@tanstack/react-start'
 import type { FileItem } from '@/components/files'
-
-export const FILES_DIR = path.join(process.cwd(), 'uploads-files')
-
-async function ensureFilesDir() {
-  try {
-    await fs.promises.access(FILES_DIR)
-  } catch {
-    await fs.promises.mkdir(FILES_DIR, { recursive: true })
-  }
-}
+import { formatFileSize } from './file-utils'
+import { ensureFilesDir, FILES_DIR } from './file-server-utils'
 
 export const getFiles = createServerFn({
   method: 'GET',
@@ -58,6 +49,10 @@ export const deleteFile = createServerFn({
 })
   .inputValidator((d: string) => d)
   .handler(async ({ data: fileName }) => {
+    const fs = await import('node:fs')
+    const path = await import('node:path')
+    const { FILES_DIR } = await import('./file-server-utils')
+
     if (!fileName) {
       throw new Error('文件名不能为空')
     }
@@ -70,26 +65,5 @@ export const deleteFile = createServerFn({
     } catch (error) {
       console.error('删除文件失败:', error)
       throw new Error('删除文件失败')
-    }
-  })
-
-export const downloadFile = createServerFn({
-  method: 'POST',
-})
-  .inputValidator((d: string) => d)
-  .handler(async ({ data: fileName }) => {
-    if (!fileName) {
-      throw new Error('文件名不能为空')
-    }
-
-    const filePath = path.join(FILES_DIR, fileName)
-
-    try {
-      const fileBuffer = await fs.promises.readFile(filePath)
-      const base64 = fileBuffer.toString('base64')
-      return { base64, fileName }
-    } catch (error) {
-      console.error('读取文件失败:', error)
-      throw new Error('读取文件失败')
     }
   })

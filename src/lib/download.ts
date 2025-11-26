@@ -44,7 +44,7 @@ export async function downloadWithProgress({
       }
     }
 
-    const blob = new Blob(chunks)
+    const blob = new Blob(chunks as BlobPart[])
     const downloadUrl = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = downloadUrl
@@ -57,4 +57,3 @@ export async function downloadWithProgress({
     onError?.(error instanceof Error ? error : new Error('Download failed'))
   }
 }
-
