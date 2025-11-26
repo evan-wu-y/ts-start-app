@@ -12,12 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DashboardLayoutRouteRouteImport } from './routes/_dashboardLayout/route'
 import { Route as DashboardLayoutIndexRouteImport } from './routes/_dashboardLayout/index'
+import { Route as ApiUploadRouteImport } from './routes/api.upload'
 import { Route as DashboardLayoutTableConverterRouteImport } from './routes/_dashboardLayout/table-converter'
 import { Route as DashboardLayoutFilesRouteImport } from './routes/_dashboardLayout/files'
 import { Route as DashboardLayoutDataTableRouteImport } from './routes/_dashboardLayout/data-table'
 import { Route as DashboardLayoutDashboardRouteImport } from './routes/_dashboardLayout/dashboard'
 import { Route as DashboardLayoutSplatRouteImport } from './routes/_dashboardLayout/$'
 import { Route as DemoApiNamesRouteImport } from './routes/demo.api.names'
+import { Route as ApiDownloadFileNameRouteImport } from './routes/api.download.$fileName'
 import { Route as DashboardLayoutDemoServerFuncsRouteImport } from './routes/_dashboardLayout/demo.server-funcs'
 import { Route as DashboardLayoutDemoApiRequestRouteImport } from './routes/_dashboardLayout/demo.api-request'
 import { Route as DashboardLayoutDemoSsrIndexRouteImport } from './routes/_dashboardLayout/demo.ssr.index'
@@ -38,6 +40,11 @@ const DashboardLayoutIndexRoute = DashboardLayoutIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardLayoutRouteRoute,
+} as any)
+const ApiUploadRoute = ApiUploadRouteImport.update({
+  id: '/api/upload',
+  path: '/api/upload',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardLayoutTableConverterRoute =
   DashboardLayoutTableConverterRouteImport.update({
@@ -70,6 +77,11 @@ const DashboardLayoutSplatRoute = DashboardLayoutSplatRouteImport.update({
 const DemoApiNamesRoute = DemoApiNamesRouteImport.update({
   id: '/demo/api/names',
   path: '/demo/api/names',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDownloadFileNameRoute = ApiDownloadFileNameRouteImport.update({
+  id: '/api/download/$fileName',
+  path: '/api/download/$fileName',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardLayoutDemoServerFuncsRoute =
@@ -116,9 +128,11 @@ export interface FileRoutesByFullPath {
   '/data-table': typeof DashboardLayoutDataTableRoute
   '/files': typeof DashboardLayoutFilesRoute
   '/table-converter': typeof DashboardLayoutTableConverterRoute
+  '/api/upload': typeof ApiUploadRoute
   '/': typeof DashboardLayoutIndexRoute
   '/demo/api-request': typeof DashboardLayoutDemoApiRequestRoute
   '/demo/server-funcs': typeof DashboardLayoutDemoServerFuncsRoute
+  '/api/download/$fileName': typeof ApiDownloadFileNameRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/ssr/data-only': typeof DashboardLayoutDemoSsrDataOnlyRoute
   '/demo/ssr/full-ssr': typeof DashboardLayoutDemoSsrFullSsrRoute
@@ -132,9 +146,11 @@ export interface FileRoutesByTo {
   '/data-table': typeof DashboardLayoutDataTableRoute
   '/files': typeof DashboardLayoutFilesRoute
   '/table-converter': typeof DashboardLayoutTableConverterRoute
+  '/api/upload': typeof ApiUploadRoute
   '/': typeof DashboardLayoutIndexRoute
   '/demo/api-request': typeof DashboardLayoutDemoApiRequestRoute
   '/demo/server-funcs': typeof DashboardLayoutDemoServerFuncsRoute
+  '/api/download/$fileName': typeof ApiDownloadFileNameRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/ssr/data-only': typeof DashboardLayoutDemoSsrDataOnlyRoute
   '/demo/ssr/full-ssr': typeof DashboardLayoutDemoSsrFullSsrRoute
@@ -150,9 +166,11 @@ export interface FileRoutesById {
   '/_dashboardLayout/data-table': typeof DashboardLayoutDataTableRoute
   '/_dashboardLayout/files': typeof DashboardLayoutFilesRoute
   '/_dashboardLayout/table-converter': typeof DashboardLayoutTableConverterRoute
+  '/api/upload': typeof ApiUploadRoute
   '/_dashboardLayout/': typeof DashboardLayoutIndexRoute
   '/_dashboardLayout/demo/api-request': typeof DashboardLayoutDemoApiRequestRoute
   '/_dashboardLayout/demo/server-funcs': typeof DashboardLayoutDemoServerFuncsRoute
+  '/api/download/$fileName': typeof ApiDownloadFileNameRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/_dashboardLayout/demo/ssr/data-only': typeof DashboardLayoutDemoSsrDataOnlyRoute
   '/_dashboardLayout/demo/ssr/full-ssr': typeof DashboardLayoutDemoSsrFullSsrRoute
@@ -168,9 +186,11 @@ export interface FileRouteTypes {
     | '/data-table'
     | '/files'
     | '/table-converter'
+    | '/api/upload'
     | '/'
     | '/demo/api-request'
     | '/demo/server-funcs'
+    | '/api/download/$fileName'
     | '/demo/api/names'
     | '/demo/ssr/data-only'
     | '/demo/ssr/full-ssr'
@@ -184,9 +204,11 @@ export interface FileRouteTypes {
     | '/data-table'
     | '/files'
     | '/table-converter'
+    | '/api/upload'
     | '/'
     | '/demo/api-request'
     | '/demo/server-funcs'
+    | '/api/download/$fileName'
     | '/demo/api/names'
     | '/demo/ssr/data-only'
     | '/demo/ssr/full-ssr'
@@ -201,9 +223,11 @@ export interface FileRouteTypes {
     | '/_dashboardLayout/data-table'
     | '/_dashboardLayout/files'
     | '/_dashboardLayout/table-converter'
+    | '/api/upload'
     | '/_dashboardLayout/'
     | '/_dashboardLayout/demo/api-request'
     | '/_dashboardLayout/demo/server-funcs'
+    | '/api/download/$fileName'
     | '/demo/api/names'
     | '/_dashboardLayout/demo/ssr/data-only'
     | '/_dashboardLayout/demo/ssr/full-ssr'
@@ -214,6 +238,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   DashboardLayoutRouteRoute: typeof DashboardLayoutRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
+  ApiUploadRoute: typeof ApiUploadRoute
+  ApiDownloadFileNameRoute: typeof ApiDownloadFileNameRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
 }
 
@@ -239,6 +265,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof DashboardLayoutIndexRouteImport
       parentRoute: typeof DashboardLayoutRouteRoute
+    }
+    '/api/upload': {
+      id: '/api/upload'
+      path: '/api/upload'
+      fullPath: '/api/upload'
+      preLoaderRoute: typeof ApiUploadRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_dashboardLayout/table-converter': {
       id: '/_dashboardLayout/table-converter'
@@ -280,6 +313,13 @@ declare module '@tanstack/react-router' {
       path: '/demo/api/names'
       fullPath: '/demo/api/names'
       preLoaderRoute: typeof DemoApiNamesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/download/$fileName': {
+      id: '/api/download/$fileName'
+      path: '/api/download/$fileName'
+      fullPath: '/api/download/$fileName'
+      preLoaderRoute: typeof ApiDownloadFileNameRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_dashboardLayout/demo/server-funcs': {
@@ -363,6 +403,8 @@ const DashboardLayoutRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   DashboardLayoutRouteRoute: DashboardLayoutRouteRouteWithChildren,
   LoginRoute: LoginRoute,
+  ApiUploadRoute: ApiUploadRoute,
+  ApiDownloadFileNameRoute: ApiDownloadFileNameRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
 }
 export const routeTree = rootRouteImport
