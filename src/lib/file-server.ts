@@ -4,7 +4,7 @@ import path from 'node:path'
 import { formatFileSize } from './file-utils'
 import type { FileItem } from '@/components/files'
 
-const FILES_DIR = path.join(process.cwd(), 'uploads-files')
+export const FILES_DIR = path.join(process.cwd(), 'uploads-files')
 
 async function ensureFilesDir() {
   try {

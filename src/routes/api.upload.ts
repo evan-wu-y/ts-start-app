@@ -3,8 +3,7 @@ import { json } from '@tanstack/react-start'
 import fs from 'node:fs'
 import path from 'node:path'
 import { formatFileSize } from '@/lib/file-utils'
-
-const FILES_DIR = path.join(process.cwd(), 'files')
+import { FILES_DIR } from '@/lib/file-server'
 
 async function ensureFilesDir() {
   try {
