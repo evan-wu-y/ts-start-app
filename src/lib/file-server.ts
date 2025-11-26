@@ -49,10 +49,6 @@ export const deleteFile = createServerFn({
 })
   .inputValidator((d: string) => d)
   .handler(async ({ data: fileName }) => {
-    const fs = await import('node:fs')
-    const path = await import('node:path')
-    const { FILES_DIR } = await import('./file-server-utils')
-
     if (!fileName) {
       throw new Error('文件名不能为空')
     }
