@@ -10,7 +10,9 @@ export const getRouter = () => {
     routeTree,
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
-    defaultViewTransition: true,
+    defaultViewTransition: {
+      types: ['slide'],
+    },
     // 使用 fuzzy 模式，让最近的有 notFoundComponent 的父路由处理 404
     notFoundMode: 'fuzzy',
     defaultNotFoundComponent: () => <NotFound />,

@@ -14,6 +14,7 @@ import { Route as DashboardLayoutRouteRouteImport } from './routes/_dashboardLay
 import { Route as DashboardLayoutIndexRouteImport } from './routes/_dashboardLayout/index'
 import { Route as ApiUploadRouteImport } from './routes/api.upload'
 import { Route as DashboardLayoutTableConverterRouteImport } from './routes/_dashboardLayout/table-converter'
+import { Route as DashboardLayoutMeRouteImport } from './routes/_dashboardLayout/me'
 import { Route as DashboardLayoutFilesRouteImport } from './routes/_dashboardLayout/files'
 import { Route as DashboardLayoutDataTableRouteImport } from './routes/_dashboardLayout/data-table'
 import { Route as DashboardLayoutDashboardRouteImport } from './routes/_dashboardLayout/dashboard'
@@ -52,6 +53,11 @@ const DashboardLayoutTableConverterRoute =
     path: '/table-converter',
     getParentRoute: () => DashboardLayoutRouteRoute,
   } as any)
+const DashboardLayoutMeRoute = DashboardLayoutMeRouteImport.update({
+  id: '/me',
+  path: '/me',
+  getParentRoute: () => DashboardLayoutRouteRoute,
+} as any)
 const DashboardLayoutFilesRoute = DashboardLayoutFilesRouteImport.update({
   id: '/files',
   path: '/files',
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardLayoutDashboardRoute
   '/data-table': typeof DashboardLayoutDataTableRoute
   '/files': typeof DashboardLayoutFilesRoute
+  '/me': typeof DashboardLayoutMeRoute
   '/table-converter': typeof DashboardLayoutTableConverterRoute
   '/api/upload': typeof ApiUploadRoute
   '/': typeof DashboardLayoutIndexRoute
@@ -145,6 +152,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardLayoutDashboardRoute
   '/data-table': typeof DashboardLayoutDataTableRoute
   '/files': typeof DashboardLayoutFilesRoute
+  '/me': typeof DashboardLayoutMeRoute
   '/table-converter': typeof DashboardLayoutTableConverterRoute
   '/api/upload': typeof ApiUploadRoute
   '/': typeof DashboardLayoutIndexRoute
@@ -165,6 +173,7 @@ export interface FileRoutesById {
   '/_dashboardLayout/dashboard': typeof DashboardLayoutDashboardRoute
   '/_dashboardLayout/data-table': typeof DashboardLayoutDataTableRoute
   '/_dashboardLayout/files': typeof DashboardLayoutFilesRoute
+  '/_dashboardLayout/me': typeof DashboardLayoutMeRoute
   '/_dashboardLayout/table-converter': typeof DashboardLayoutTableConverterRoute
   '/api/upload': typeof ApiUploadRoute
   '/_dashboardLayout/': typeof DashboardLayoutIndexRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/data-table'
     | '/files'
+    | '/me'
     | '/table-converter'
     | '/api/upload'
     | '/'
@@ -203,6 +213,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/data-table'
     | '/files'
+    | '/me'
     | '/table-converter'
     | '/api/upload'
     | '/'
@@ -222,6 +233,7 @@ export interface FileRouteTypes {
     | '/_dashboardLayout/dashboard'
     | '/_dashboardLayout/data-table'
     | '/_dashboardLayout/files'
+    | '/_dashboardLayout/me'
     | '/_dashboardLayout/table-converter'
     | '/api/upload'
     | '/_dashboardLayout/'
@@ -278,6 +290,13 @@ declare module '@tanstack/react-router' {
       path: '/table-converter'
       fullPath: '/table-converter'
       preLoaderRoute: typeof DashboardLayoutTableConverterRouteImport
+      parentRoute: typeof DashboardLayoutRouteRoute
+    }
+    '/_dashboardLayout/me': {
+      id: '/_dashboardLayout/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof DashboardLayoutMeRouteImport
       parentRoute: typeof DashboardLayoutRouteRoute
     }
     '/_dashboardLayout/files': {
@@ -372,6 +391,7 @@ interface DashboardLayoutRouteRouteChildren {
   DashboardLayoutDashboardRoute: typeof DashboardLayoutDashboardRoute
   DashboardLayoutDataTableRoute: typeof DashboardLayoutDataTableRoute
   DashboardLayoutFilesRoute: typeof DashboardLayoutFilesRoute
+  DashboardLayoutMeRoute: typeof DashboardLayoutMeRoute
   DashboardLayoutTableConverterRoute: typeof DashboardLayoutTableConverterRoute
   DashboardLayoutIndexRoute: typeof DashboardLayoutIndexRoute
   DashboardLayoutDemoApiRequestRoute: typeof DashboardLayoutDemoApiRequestRoute
@@ -387,6 +407,7 @@ const DashboardLayoutRouteRouteChildren: DashboardLayoutRouteRouteChildren = {
   DashboardLayoutDashboardRoute: DashboardLayoutDashboardRoute,
   DashboardLayoutDataTableRoute: DashboardLayoutDataTableRoute,
   DashboardLayoutFilesRoute: DashboardLayoutFilesRoute,
+  DashboardLayoutMeRoute: DashboardLayoutMeRoute,
   DashboardLayoutTableConverterRoute: DashboardLayoutTableConverterRoute,
   DashboardLayoutIndexRoute: DashboardLayoutIndexRoute,
   DashboardLayoutDemoApiRequestRoute: DashboardLayoutDemoApiRequestRoute,

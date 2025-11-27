@@ -4,6 +4,7 @@ import {
   Outlet,
   Link,
   useLocation,
+  redirect,
 } from '@tanstack/react-router'
 
 import {
@@ -24,6 +25,11 @@ import { AppSidebar } from '@/components/dashboard/app-sidebar'
 import { DashboardNotFound } from '@/components/not-found'
 
 export const Route = createFileRoute('/_dashboardLayout')({
+  beforeLoad: ({ context }) => {
+    if (!context.accessToken) {
+      throw redirect({ to: '/login' })
+    }
+  },
   component: PathlessLayoutComponent,
   notFoundComponent: DashboardNotFound,
 })
@@ -100,7 +106,7 @@ function PathlessLayoutComponent() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col overflow-hidden w-full">
+        <div className="flex flex-1 flex-col overflow-hidden w-full [view-transition-name:main-content]">
           <Outlet />
         </div>
       </SidebarInset>
