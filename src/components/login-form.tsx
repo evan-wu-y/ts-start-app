@@ -14,8 +14,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { Link } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
-import { loginFn } from '@/lib/auth'
-import { loginSchema } from '@/lib/auth'
+import { loginFn } from '@/lib/auth-actions'
+import { loginSchema } from '@/lib/auth-actions'
 
 export function LoginForm({
   className,
