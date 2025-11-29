@@ -36,4 +36,3 @@ export const Route = createFileRoute('/api/download/$fileName')({
     },
   },
 })
-

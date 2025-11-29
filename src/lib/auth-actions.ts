@@ -57,3 +57,14 @@ export const loginFn = createServerFn({
     // 登录成功后跳转到主页
     throw redirect({ to: '/' })
   })
+
+export const logoutFn = createServerFn({
+  method: 'POST',
+}).handler(async () => {
+  const [accessSession, refreshSession] = await Promise.all([
+    await useAccessSession(),
+    await useRefreshSession(),
+  ])
+  await Promise.all([accessSession.clear(), refreshSession.clear()])
+  throw redirect({ to: '/login' })
+})
