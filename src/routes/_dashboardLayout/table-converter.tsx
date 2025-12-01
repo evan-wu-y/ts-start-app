@@ -547,15 +547,15 @@ function TableConverter() {
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-0 min-w-0 overflow-hidden w-full max-w-full">
-            <Tabs defaultValue="json" className="w-full min-w-0 max-w-full">
+            <Tabs defaultValue="markdown" className="w-full min-w-0 max-w-full">
               <TabsList className="grid w-full grid-cols-2 h-9">
-                <TabsTrigger value="json" className="gap-1.5 text-xs">
-                  <FileText className="h-3.5 w-3.5" />
-                  JSON
-                </TabsTrigger>
                 <TabsTrigger value="markdown" className="gap-1.5 text-xs">
                   <FileText className="h-3.5 w-3.5" />
                   Markdown
+                </TabsTrigger>
+                <TabsTrigger value="json" className="gap-1.5 text-xs">
+                  <FileText className="h-3.5 w-3.5" />
+                  JSON
                 </TabsTrigger>
               </TabsList>
 
@@ -670,7 +670,7 @@ function TableConverter() {
             </CardHeader>
             <CardContent className="pt-0 overflow-hidden w-full">
               <div className="w-full">
-                <TablePreview data={jsonData} />
+                <TablePreview data={jsonData} scrollAreaClassName="h-[408px]" />
               </div>
             </CardContent>
           </Card>

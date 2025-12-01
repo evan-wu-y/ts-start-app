@@ -91,6 +91,195 @@ const data: Payment[] = [
     email: 'sample@example.com',
     name: '吴十',
   },
+  {
+    id: 'a1b2c3d4',
+    amount: 1560,
+    status: 'success',
+    email: 'zhangwei@example.com',
+    name: '张伟',
+  },
+  {
+    id: 'e5f6g7h8',
+    amount: 890,
+    status: 'processing',
+    email: 'wangfang@example.com',
+    name: '王芳',
+  },
+  {
+    id: 'i9j0k1l2',
+    amount: 234,
+    status: 'pending',
+    email: 'liuming@example.com',
+    name: '刘明',
+  },
+  {
+    id: 'm3n4o5p6',
+    amount: 1890,
+    status: 'success',
+    email: 'chenli@example.com',
+    name: '陈丽',
+  },
+  {
+    id: 'q7r8s9t0',
+    amount: 567,
+    status: 'failed',
+    email: 'yangjun@example.com',
+    name: '杨军',
+  },
+  {
+    id: 'u1v2w3x4',
+    amount: 1234,
+    status: 'success',
+    email: 'huangmei@example.com',
+    name: '黄梅',
+  },
+  {
+    id: 'y5z6a7b8',
+    amount: 345,
+    status: 'processing',
+    email: 'xukai@example.com',
+    name: '徐凯',
+  },
+  {
+    id: 'c9d0e1f2',
+    amount: 987,
+    status: 'pending',
+    email: 'sunli@example.com',
+    name: '孙莉',
+  },
+  {
+    id: 'g3h4i5j6',
+    amount: 2100,
+    status: 'success',
+    email: 'mawei@example.com',
+    name: '马伟',
+  },
+  {
+    id: 'k7l8m9n0',
+    amount: 456,
+    status: 'failed',
+    email: 'zhaoyan@example.com',
+    name: '赵燕',
+  },
+  {
+    id: 'o1p2q3r4',
+    amount: 1789,
+    status: 'success',
+    email: 'zhoujie@example.com',
+    name: '周杰',
+  },
+  {
+    id: 's5t6u7v8',
+    amount: 678,
+    status: 'processing',
+    email: 'wuxia@example.com',
+    name: '吴霞',
+  },
+  {
+    id: 'w9x0y1z2',
+    amount: 3456,
+    status: 'success',
+    email: 'zhengtao@example.com',
+    name: '郑涛',
+  },
+  {
+    id: 'a3b4c5d6',
+    amount: 789,
+    status: 'pending',
+    email: 'fengjing@example.com',
+    name: '冯静',
+  },
+  {
+    id: 'e7f8g9h0',
+    amount: 1456,
+    status: 'success',
+    email: 'caoyu@example.com',
+    name: '曹宇',
+  },
+  {
+    id: 'i1j2k3l4',
+    amount: 234,
+    status: 'failed',
+    email: 'hanlei@example.com',
+    name: '韩磊',
+  },
+  {
+    id: 'm5n6o7p8',
+    amount: 2678,
+    status: 'success',
+    email: 'tangxin@example.com',
+    name: '唐欣',
+  },
+  {
+    id: 'q9r0s1t2',
+    amount: 890,
+    status: 'processing',
+    email: 'dengbin@example.com',
+    name: '邓斌',
+  },
+  {
+    id: 'u3v4w5x6',
+    amount: 123,
+    status: 'pending',
+    email: 'gaoyan@example.com',
+    name: '高艳',
+  },
+  {
+    id: 'y7z8a9b0',
+    amount: 3456,
+    status: 'success',
+    email: 'linhao@example.com',
+    name: '林浩',
+  },
+  {
+    id: 'c1d2e3f4',
+    amount: 567,
+    status: 'processing',
+    email: 'heping@example.com',
+    name: '何平',
+  },
+  {
+    id: 'g5h6i7j8',
+    amount: 1890,
+    status: 'success',
+    email: 'luoyi@example.com',
+    name: '罗艺',
+  },
+  {
+    id: 'k9l0m1n2',
+    amount: 456,
+    status: 'failed',
+    email: 'songyang@example.com',
+    name: '宋阳',
+  },
+  {
+    id: 'o3p4q5r6',
+    amount: 2345,
+    status: 'success',
+    email: 'panlei@example.com',
+    name: '潘磊',
+  },
+  {
+    id: 's7t8u9v0',
+    amount: 678,
+    status: 'pending',
+    email: 'fangmin@example.com',
+    name: '方敏',
+  },
+  {
+    id: 'w1x2y3z4',
+    amount: 1567,
+    status: 'success',
+    email: 'renqiang@example.com',
+    name: '任强',
+  },
+  {
+    id: 'a5b6c7d8',
+    amount: 890,
+    status: 'processing',
+    email: 'shixue@example.com',
+    name: '石雪',
+  },
 ]
 
 // 状态标签映射
@@ -242,12 +431,7 @@ function DataTablePage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="w-full">
-          <DataTable
-            scrollAreaClassName="h-[520px]"
-            columns={columns}
-            filterColumn="email"
-            data={data}
-          />
+          <DataTable columns={columns} filterColumn="email" data={data} />
         </CardContent>
       </Card>
     </div>

@@ -46,7 +46,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   className,
-  scrollAreaClassName,
+  scrollAreaClassName = 'h-[528px]',
   filterColumn,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([])
